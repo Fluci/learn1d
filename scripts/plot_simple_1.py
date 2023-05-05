@@ -2,9 +2,10 @@ import argparse
 import json
 import matplotlib.pyplot as plt
 
+scale = 4
 
 def plot_point_clouds(files, out_plot="plot.png"):
-    fig, ax = plt.subplots()
+    fig, ax = plt.subplots(figsize=(scale * 6.4, scale * 4.8), dpi=200)
 
     # Plot each point cloud with a different color
     for i, file in enumerate(files):

@@ -10,7 +10,9 @@ args = parser.parse_args()
 
 colors = ['blue', 'green', 'red', 'cyan', 'magenta', 'yellow', 'black']  # Set of colors to use for each file
 
-fig, ax = plt.subplots()
+scale = 4
+
+fig, ax = plt.subplots(figsize=(scale * 6.4, scale * 4.8), dpi=400)
 for i, path in enumerate(args.paths):
     with open(path) as f:
         data = json.load(f)['data']

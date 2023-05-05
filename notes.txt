@@ -1,1 +1,3 @@
 Careful about pasting error messages: leaks usernames and file paths.
+sometimes you need to fix small things: missing conversion from list to np.array
+
