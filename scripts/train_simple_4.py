@@ -1,9 +1,8 @@
-## The --device argument takes either "gpu" or "cpu" as an input, and sets up the device for training accordingly. If "gpu" is selected, it will use the first available GPU device and set its memory growth to True. If "cpu" is selected, it will use only the CPU for training by setting CUDA_VISIBLE_DEVICES to -1.
-
 import argparse
 import json
 import os
 import tensorflow as tf
+
 
 def build_model():
     model = tf.keras.Sequential([
@@ -19,6 +18,7 @@ def build_model():
         tf.keras.layers.Dense(1)
     ])
     return model
+
 
 def train_model(x, y, output_dir, iterations, device):
     os.makedirs(output_dir, exist_ok=True)
@@ -36,7 +36,9 @@ def train_model(x, y, output_dir, iterations, device):
     else:
         raise ValueError("Device must be 'gpu' or 'cpu'.")
     model.compile(optimizer='adam', loss='mse')
+    x = tf.reshape(x, (-1, 1))
     model.fit(x, y, epochs=iterations, callbacks=[tensorboard_callback, checkpoint_callback])
+
 
 def main(training_data, output_directory=None, iterations=100000, device="cpu"):
     with open(training_data, 'r') as f:
@@ -46,6 +48,7 @@ def main(training_data, output_directory=None, iterations=100000, device="cpu"):
     output_directory = output_directory or os.getcwd()
     train_model(x, y, output_directory, iterations, device)
 
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('training_data', type=str, default="training_data.json", help='path to json training data file')
@@ -54,4 +57,3 @@ if __name__ == '__main__':
     parser.add_argument('--device', type=str, default="cpu", choices=["gpu", "cpu"], help='device to use for training')
     args = parser.parse_args()
     main(args.training_data, args.output_directory, args.iterations, args.device)
-

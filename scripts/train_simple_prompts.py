@@ -39,3 +39,17 @@ Write a script that:
 - Make sure we can observe training using tensorboard.
 - Make sure it is easy to switch between gpu and cpu training.
 
+-------------------------------
+
+4
+something is wrong in the training script:
+    ValueError: Exception encountered when calling layer 'sequential' (type Sequential).
+
+    Input 0 of layer "dense" is incompatible with the layer: expected min_ndim=2, found ndim=1. Full shape received: (None,)
+
+    Call arguments received by layer 'sequential' (type Sequential):
+      • inputs=tf.Tensor(shape=(None,), dtype=float32)
+      • training=True
+      • mask=None
+
+Please fix the script: <old script>
