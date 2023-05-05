@@ -1,6 +1,7 @@
 import argparse
 import json
 import os
+import numpy as np
 import tensorflow as tf
 
 
@@ -43,8 +44,8 @@ def train_model(x, y, output_dir, iterations, device):
 def main(training_data, output_directory=None, iterations=100000, device="cpu"):
     with open(training_data, 'r') as f:
         data = json.load(f)
-    x = data['data']['x']
-    y = data['data']['y']
+    x = np.array(data['data']['x'])
+    y = np.array(data['data']['y'])
     output_directory = output_directory or os.getcwd()
     train_model(x, y, output_directory, iterations, device)
 
