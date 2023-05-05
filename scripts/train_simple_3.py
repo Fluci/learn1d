@@ -48,7 +48,7 @@ def main(training_data, output_directory=None, iterations=100000, device="gpu"):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('training_data', type=str, help='path to json training data file')
+    parser.add_argument('training_data', type=str, default="training_data.json", help='path to json training data file')
     parser.add_argument('--output_directory', type=str, help='directory to store output files')
     parser.add_argument('--iterations', type=int, default=100000, help='number of iterations to train the model')
     parser.add_argument('--device', type=str, default="cpu", choices=["gpu", "cpu"], help='device to use for training')
